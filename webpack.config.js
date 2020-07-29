@@ -13,7 +13,7 @@ const isProduction = env === 'production';
 return {
   entry: './src/app.js',
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'public', 'dist'),
     filename: 'bundle.js',
   },
   module: {
@@ -28,6 +28,9 @@ return {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '/dist/',
+            },
           },
           {
             loader: 'css-loader',
@@ -54,8 +57,9 @@ return {
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true,
-    },
-  };
+    publicPath: '/dist/'
+  },
+};
 };
 
 
